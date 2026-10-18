@@ -1,0 +1,23 @@
+{
+  "name": "tutorbook",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "npm run build -w @tutorbook/shared && concurrently -n shared,api,web -c gray,blue,magenta \"npm run dev -w @tutorbook/shared\" \"npm run start:dev -w @tutorbook/api\" \"npm run dev -w @tutorbook/web\"",
+    "build": "npm run build -w @tutorbook/shared && npm run build -w @tutorbook/api && npm run build -w @tutorbook/web",
+    "test": "npm run test --workspaces --if-present",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "check:logs": "npm run build -w @tutorbook/shared && node packages/shared/scripts/check-logs.js"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}

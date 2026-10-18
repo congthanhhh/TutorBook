@@ -1,0 +1,10 @@
+// Schema sẽ được thiết kế sau khi phiếu v1 đã dùng thật vài buổi (xem docs/decisions.md).
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
